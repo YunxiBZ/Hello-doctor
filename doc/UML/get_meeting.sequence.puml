@@ -1,0 +1,31 @@
+@startuml get_appointment
+actor patient
+participant SpecialityController
+participant Speciality.model.php
+participant speciality.tpl.php
+
+patient -> SpecialityController ++ :  Send request
+SpecialityController -> Speciality.model.php ++ : index
+Speciality.model.php -> speciality.tpl.php ++ : query result
+speciality.tpl.php -> patient
+patient -> SpecialityController  :  Send request
+SpecialityController -> Speciality.model.php  : show(speciality_id)
+Speciality.model.php -> speciality.tpl.php  : query result
+speciality.tpl.php -> patient
+patient -> PractitionerController ++  :  Send request
+PractitionerController -> Practitioner.model.php ++ : show(speciality_id)
+Practitioner.model.php -> practitioner.tpl.php ++ : query result
+practitioner.tpl.php -> patient
+patient -> PractitionerController  :  Send request
+PractitionerController -> Practitioner.model.php  : show(practitioner_id)
+Practitioner.model.php -> practitioner.tpl.php  : query result
+speciality.tpl.php -> patient
+patient -> AppointmentController ++ : Send request
+AppointmentController -> Appointment.model.php ++ : create(practitioner_id,speciality_id)
+Appointment.model.php -> appointment.tpl.php : query result
+appointment.tpl.php -> patient
+patient -> AppointmentController ++ : Send request
+AppointmentController -> Appointment.model.php ++ : store(practitioner_id,speciality_id, datetime, motif)
+Appointment.model.php -> appointment.tpl.php : query result
+appointment.tpl.php -> patient
+@enduml
