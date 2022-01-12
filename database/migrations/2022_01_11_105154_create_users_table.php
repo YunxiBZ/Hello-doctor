@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email', 255);
+            $table->string('email', 255)->unique();
             $table->string('password', 255);
             $table->enum('status', ['pending', 'active', 'suspended']);
-            $table->enum('role', ['administrator', 'patient', 'practitioner']);
+            $table->enum('role', ['administrator', 'patient', 'practitioner'])->default('patient');
             $table->timestamps();
         });
     }
