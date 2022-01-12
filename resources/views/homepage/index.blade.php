@@ -11,32 +11,18 @@
                 <label class="visually-hidden" for="specialty">Spécialité du praticien recherché</label>
                 <select name="specialty" id="specialty" class="form-select">
                     <option selected>Spécialité du praticien recherché</option>
-                    <option>Chirurgien-dentiste</option>
-                    <option>Médecin généraliste</option>
-                    <option>Pédiatre</option>
-                    <option>Gynécologue</option>
-                    <option>Ophtalmologue</option>
-                    <option>Dermatologue</option>
-                    <option>Ostéopathe</option>
-                    <option>Masseur-kinésithérapeute</option>
-                    <option>Opticien</option>
-                    <option>Pédicure-podologue</option>
+                    @foreach ($specialties as $specialty) 
+                    <option>{{$specialty->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-12 col-lg-4 col-xxl-3">
                 <label class="visually-hidden" for="city">Ville du praticien recherché</label>
                 <select name="city" id="city" class="form-select">
                     <option selected>Ville du praticien recherché</option>
-                    <option>Paris</option>
-                    <option>Lyon</option>
-                    <option>Marseille</option>
-                    <option>Toulouse</option>
-                    <option>Bordeaux</option>
-                    <option>Lille</option>
-                    <option>Strasbourg</option>
-                    <option>Nantes</option>
-                    <option>Rennes</option>
-                    <option>Grenoble</option>
+                    @foreach ($practitioners->unique('city') as $practitioner)
+                    <option>{{$practitioner->city}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-12">
