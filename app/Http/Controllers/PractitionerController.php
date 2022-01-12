@@ -94,6 +94,7 @@ class PractitionerController extends Controller
     {
         // get specialty choosed by request body
         $specialty_id = $request->specialty;
+        $specialty = Specialty::where('id', $specialty_id)->first()->name;
         // get city choosed by request body
         $city = $request->city;
         // filters practitioners by city
@@ -102,9 +103,19 @@ class PractitionerController extends Controller
                                     ->with('specialty')
                                     ->where('specialty_id', $specialty_id)
                                     ->get();
-
+        if (!$practitioners->first()) {
+            return view('search-result.index', [
+                "city" => $city,
+                "specialty" => $specialty,
+                "practitioners" => $practitioners,
+                "message" => "Désolés, pour l'instant, il n'y a pas de medecin disponible dans votre recheche."
+            ]);
+        }
         return view('search-result.index', [
-            "practitioners" => $practitioners
+            "practitioners" => $practitioners,
+            "city" => $city,
+            "specialty" => $specialty,
+            "message" => ""
         ]);
     }
 }
