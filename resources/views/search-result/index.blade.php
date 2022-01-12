@@ -6,7 +6,8 @@
 
     <main class="flex-shrink-0 my-auto">
         <div class="container-fluid p-3">
-            <h1>Résultat de la recherche pour "<span>Médecin généraliste</span>" à <span>Paris</span></h1>
+            <h1>Résultat de la recherche pour "<span>{{$specialty}}</span>" à <span>{{$city}}</span></h1>
+            <p>{{$message}}</p>
             <section>
                 @foreach ($practitioners as $practitioner)
                     
