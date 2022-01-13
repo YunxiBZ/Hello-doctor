@@ -18,49 +18,17 @@
                         <p>{{"$practitioner->address $practitioner->zipcode $practitioner->city"}}</p>
                     </div>
                     <div class="appointments d-md-flex w-100">
+                        @foreach($weekdays as $weekday)
                         <div class="day mb-2 me-3">
-                            <time datetime="2022-01-10">Lundi 10/01</time>
-                            <a href="" class="btn btn-primary mb-2 appointment">09:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">10:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">11:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">12:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">14:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">15:00</a>
+                            <time datetime={{$weekday->isoFormat('YYYY-MM-DD')}}>{{$weekday->isoFormat('dddd D/MM')}}</time>
+                            @for ($i = 9; $i <= 12 ; $i++) 
+                            <a href="" class="btn btn-primary mb-2 appointment">{{$i}}:00</a>
+                            @endfor
+                            @for ($i = 14; $i <= 18 ; $i++) 
+                            <a href="" class="btn btn-primary mb-2 appointment">{{$i}}:00</a>
+                            @endfor
                         </div>
-                        <div class="day mb-2 me-3">
-                            <time datetime="2022-01-11">Mardi 11/01</time>
-                            <a href="" class="btn btn-primary mb-2 appointment">08:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">09:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">10:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">11:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">12:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">14:00</a>
-                        </div>
-                        <div class="day mb-2 me-3">
-                            <time datetime="2022-01-12">Mercredi 12/01</time>
-                            <a href="" class="btn btn-primary mb-2 appointment">09:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">11:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">12:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">14:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">15:00</a>
-                        </div>
-                        <div class="day mb-2 me-3">
-                            <time datetime="2022-01-13">Jeudi 13/01</time>
-                            <a href="" class="btn btn-primary mb-2 appointment">08:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">09:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">10:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">12:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">14:00</a>
-                        </div>
-                        <div class="day mb-2 me-3">
-                            <time datetime="2022-01-14">Vendredi 14/01</time>
-                            <a href="" class="btn btn-primary mb-2 appointment">08:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">09:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">10:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">11:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">12:00</a>
-                            <a href="" class="btn btn-primary mb-2 appointment">14:00</a>
-                        </div>
+                        @endforeach
                     </div>
                 </article>
                 @endforeach

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Specialty;
 use App\Models\Practitioner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Carbon\CarbonImmutable;
 
 class PractitionerController extends Controller
 {
@@ -103,11 +105,23 @@ class PractitionerController extends Controller
                                     ->with('specialty')
                                     ->where('specialty_id', $specialty_id)
                                     ->get();
+
+        // Get the future 5 work days with Carbon
+        $today = CarbonImmutable::now()->locale('fr_FR');
+
+        $weekdays = array();
+        for ($i = 0; $i < 7; $i++) {
+            if ($today->add($i, 'day')->isWeekday()) {
+                array_push($weekdays, $today->add($i, 'day'));
+            }
+        }
+
         if (!$practitioners->first()) {
             return view('search-result.index', [
                 "city" => $city,
                 "specialty" => $specialty,
                 "practitioners" => $practitioners,
+                "weekdays" => $weekdays,
                 "message" => "Désolés, pour l'instant, il n'y a pas de medecin disponible dans votre recheche."
             ]);
         }
@@ -115,6 +129,7 @@ class PractitionerController extends Controller
             "practitioners" => $practitioners,
             "city" => $city,
             "specialty" => $specialty,
+            "weekdays" => $weekdays,
             "message" => ""
         ]);
     }
