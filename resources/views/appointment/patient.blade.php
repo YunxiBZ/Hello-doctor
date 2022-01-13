@@ -20,7 +20,9 @@
                                 <li>{{$futureAppointment->practitioner->address}}</li>
                             </ul>
                         </p>
-                        <form action="">
+                        <form action="{{ route('appointments.update', [$futureAppointment->id]) }}" method="post">
+                            @csrf
+                            @method('PUT')
                             <button class="btn btn-warning">Annuler le rendez-vous</button>
                         </form>
                     </div>

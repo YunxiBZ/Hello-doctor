@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class AppointmentController extends Controller
                 $meetTime = Carbon::parse($appointment->meet_at);
                 $now = Carbon::now();
                 // gt() is a Carbon method to compare two date values
-                if ($meetTime->gt($now)) {
+                if ($meetTime->gt($now) && $appointment->status === 'active') {
                     array_push($futureAppointments, $appointment);
                 } else {
                     array_push($pastAppointments, $appointment);
@@ -86,7 +87,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the appointment status to 'canceled' in storage for cancel the appointment.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -94,7 +95,10 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $appointment = Appointment::where('id', $id)->first();
+        $appointment->status = 'canceled';
+        $appointment->update();
+        return redirect()->back();
     }
 
     /**
