@@ -1,6 +1,8 @@
 @extends('layout.base')
 
 @section('title', 'AllO\'Doc - Mes Rendez-vous')
+
+@section('content')
 <main class="flex-shrink-0 my-auto">
     <div class="container-fluid">
         <h1 class="mb-3">Mes rendez-vous</h1>
@@ -49,6 +51,5 @@
 
     </div>
 </main>
-@section('content')
 
 @endSection
