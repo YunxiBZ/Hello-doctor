@@ -147,6 +147,15 @@ return [
         'city' => [
             'required' => 'Veuillez choisir une ville',
         ],
+        'zipcode' => [
+            'max' => 'Veuillez saisir un code moins de 5 chiffres/lettres ',
+        ],
+        'email' => [
+            'unique' => 'Ce mail est déjà inscrit ',
+        ],
+        'password' => [
+            'confirmed' => 'Votre mot de passe et le mot de passe confirmé ne sont pas identiques',
+        ],
     ],
 
     /*

@@ -26,13 +26,13 @@
                         <label class="form-label" for="lastname">Nom</label>
                     </div>
                     <div class="form-outline mb-2">
-                        <input type="text" id="street" name='street' value="{{ old('street') }}" required class="form-control form-control-lg" placeholder="Rue" />
-                        <label class="form-label" for="street">Rue</label>
+                        <input type="text" id="address" name='address' value="{{ old('address') }}" required class="form-control form-control-lg" placeholder="Rue" />
+                        <label class="form-label" for="address">Rue</label>
                     </div>
                     <div class="form-outline mb-2">
-                        <input type="text" id="postCode" name='postCode' value="{{ old('postCode') }}" required class="form-control form-control-lg"
+                        <input type="text" id="zipcode" name='zipcode' value="{{ old('zipcode') }}" required class="form-control form-control-lg"
                             placeholder="Code Postal" />
-                        <label class="form-label" for="postCode">Code Postal</label>
+                        <label class="form-label" for="zipcode">Code Postal</label>
                     </div>
                     <div class="form-outline mb-2">
                         <input type="text" id="city" name='city' value="{{ old('city') }}" required class="form-control form-control-lg" placeholder="Ville" />
@@ -48,9 +48,9 @@
                         <label class="form-label" for="password">Mot de passe</label>
                     </div>
                     <div class="form-outline mb-2">
-                        <input type="password" id="passwordConfirm" name='passwordConfirm' value="{{ old('passwordConfirm') }}" required class="form-control form-control-lg"
+                        <input type="password" id="password_confirmation" name='password_confirmation' value="{{ old('password_confirmation') }}" required class="form-control form-control-lg"
                             placeholder="Confirmer le mot de passe" />
-                        <label class="form-label" for="passwordConfirm">Confirmer le mot de passe</label>
+                        <label class="form-label" for="password_confirmation">Confirmer le mot de passe</label>
                     </div>
                     <div class="text-center text-lg-start">
                         <button type="submit" class="btn btn-primary btn-lg">Inscription</button>
