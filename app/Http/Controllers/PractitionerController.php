@@ -94,6 +94,10 @@ class PractitionerController extends Controller
      */
     public function search(Request $request)
     {
+        $request->validate([
+            'specialty' => ['required'],
+            'city' => ['required'],
+        ]);
         // get specialty choosed by request body
         $specialty_id = $request->specialty;
         $specialty = Specialty::where('id', $specialty_id)->first()->name;
@@ -115,7 +119,7 @@ class PractitionerController extends Controller
                 array_push($weekdays, $today->add($i, 'day'));
             }
         }
-
+        // not found a practitioner
         if (!$practitioners->first()) {
             return view('search-result.index', [
                 "city" => $city,
@@ -125,6 +129,7 @@ class PractitionerController extends Controller
                 "message" => "Désolés, pour l'instant, il n'y a pas de medecin disponible dans votre recheche."
             ]);
         }
+        // found a practitioner
         return view('search-result.index', [
             "practitioners" => $practitioners,
             "city" => $city,

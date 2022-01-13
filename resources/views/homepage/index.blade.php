@@ -6,12 +6,23 @@
 <main class="flex-shrink-0 mb-auto">
     <div class="p-5" id="search-form">
         <h1 class="fw-bold text-light">Site de réservation de RDV médicaux</h1>
+        @if ($errors->any())
+        <article class="alert alert-primary">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+        </article>
+        @endif
         <form action="/practitioners/search" method="post" class="row row-cols-auto row-cols-md-2 row-cols-lg-3 g-3">
-            @csrf
+           
+
+        @csrf
             <div class="col-12 col-lg-4 col-xxl-3">
                 <label class="visually-hidden" for="specialty">Spécialité du praticien recherché</label>
                 <select name="specialty" id="specialty" class="form-select">
-                    <option selected>Spécialité du praticien recherché</option>
+                    <option value="" hidden disabled selected>Spécialité du praticien recherché</option>
                         @foreach ($specialties as $specialty) 
                             <option value={{$specialty->id}}>{{$specialty->name}}</option>
                         @endforeach
@@ -20,7 +31,7 @@
             <div class="col-12 col-lg-4 col-xxl-3">
                 <label class="visually-hidden" for="city">Ville du praticien recherché</label>
                 <select name="city" id="city" class="form-select">
-                    <option selected>Ville du praticien recherché</option>
+                    <option value="" disabled selected>Ville du praticien recherché</option>
                         @foreach ($practitioners->unique('city') as $practitioner)
                             <option>{{$practitioner->city}}</option>
                         @endforeach

@@ -141,8 +141,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'specialty' => [
+            'required' => 'Veuillez choisir un spécialité',
+        ],
+        'city' => [
+            'required' => 'Veuillez choisir une ville',
         ],
     ],
 
