@@ -15,7 +15,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">AllO'Doc</a>
+                @auth
+                <p class="navbar-brand">AllO'Doc</p>
+                @endauth
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +31,14 @@
                     </ul>
                     <div class="d-flex">
                         @guest
-                        <a class="btn btn-outline-light me-1" href={{route('auth.login')}}>Connexion</a>
+                        <a class="btn btn-outline-light " href={{route('auth.login')}}>Connexion</a>
                         <a class="btn btn-info" href={{route('auth.signup')}}>Inscription</a>
                         @endguest
+                        @auth
+                        <a class="navbar-brand" href="/">Bonjour {{session('firstname') ?? ''}}</a>
+                        <a class="btn btn-info me-1" href={{route('auth.signup')}}>Mes rendez-vous</a>
+                        <a class="btn btn-outline-light me-1" href={{route('auth.logout')}}>Se déconnecter</a>
+                        @endauth
                     </div>
                 </div>
             </div>
