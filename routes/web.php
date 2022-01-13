@@ -15,9 +15,25 @@ use App\Http\Controllers\PractitionerController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('homepage.index');
-// });
 
+// Route for display hompage
 Route::get('/', [HomepageController::class,'index']);
+
+// Route for handle search
 Route::post('/practitioners/search', [PractitionerController::class,'search']);
+
+// Route for display login form
+Route::get('login', function () {
+    return view('auth.login');
+})->name('auth.login');
+
+// Route for handle login form
+Route::post('login', [AuthController::class, 'login'])->name('auth.login.action');
+
+// Route for display signup form
+Route::get('signup', function () {
+    return view('auth.signup');
+})->name('auth.signup');
+
+// Route for handle login form
+Route::post('login', [AuthController::class, 'signup'])->name('auth.login.action');

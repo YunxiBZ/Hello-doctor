@@ -28,8 +28,10 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a class="btn btn-outline-light me-1" href="">Connexion</a>
-                        <a class="btn btn-info" href="">Inscription</a>
+                        @guest
+                        <a class="btn btn-outline-light me-1" href={{route('auth.login')}}>Connexion</a>
+                        <a class="btn btn-info" href={{route('auth.signup')}}>Inscription</a>
+                        @endguest
                     </div>
                 </div>
             </div>
