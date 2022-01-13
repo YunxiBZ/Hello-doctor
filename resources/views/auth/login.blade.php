@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'AllO\'Doc - Home')
+@section('title', 'AllO\'Doc - Login')
 
 @section('content')
 <main class="flex-shrink-0 mb-auto">

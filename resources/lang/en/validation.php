@@ -142,7 +142,7 @@ return [
 
     'custom' => [
         'specialty' => [
-            'required' => 'Veuillez choisir un spécialité',
+            'required' => 'Veuillez choisir une spécialité',
         ],
         'city' => [
             'required' => 'Veuillez choisir une ville',

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PractitionerController;
 
 /*
@@ -40,3 +41,7 @@ Route::get('signup', function () {
 Route::post('signup', [AuthController::class, 'signup'])->name('auth.signup.action');
 // Route for handle logout
 Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+// Route for HANDLE ALL appointments By Resource Controller
+// https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
+Route::resource('appointments', AppointmentController::class);

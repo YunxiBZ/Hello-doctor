@@ -36,7 +36,7 @@
                         @endguest
                         @auth
                         <a class="navbar-brand" href="/">Bonjour {{Auth::user()->practitioner->firstname ?? Auth::user()->patient->firstname ?? 'admin'}}</a>
-                        <a class="btn btn-info me-1" href={{route('auth.signup')}}>Mes rendez-vous</a>
+                        <a class="btn btn-info me-1" href={{route('appointments.index')}}>Mes rendez-vous</a>
                         <a class="btn btn-outline-light me-1" href={{route('auth.logout')}}>Se déconnecter</a>
                         @endauth
                     </div>
