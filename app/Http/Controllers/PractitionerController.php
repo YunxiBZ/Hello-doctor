@@ -119,6 +119,7 @@ class PractitionerController extends Controller
                 array_push($weekdays, $today->add($i, 'day'));
             }
         }
+
         // not found a practitioner
         if (!$practitioners->first()) {
             return view('search-result.index', [

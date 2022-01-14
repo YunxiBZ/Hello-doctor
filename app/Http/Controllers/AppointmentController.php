@@ -24,6 +24,7 @@ class AppointmentController extends Controller
         if ($appointments) {
             // differentiate appointments in the past or future
             $futureAppointments = [];
+            $canceledAppointments = [];
             $pastAppointments = [];
             foreach ($appointments as $appointment) {
                 // Carbon::parse() is a method for transform string into time format
@@ -32,6 +33,8 @@ class AppointmentController extends Controller
                 // gt() is a Carbon method to compare two date values
                 if ($meetTime->gt($now) && $appointment->status === 'active') {
                     array_push($futureAppointments, $appointment);
+                } elseif ($appointment->status === 'canceled') {
+                    array_push($canceledAppointments, $appointment);
                 } else {
                     array_push($pastAppointments, $appointment);
                 }
@@ -40,6 +43,7 @@ class AppointmentController extends Controller
 
         return view('appointment.patient', [
             "futureAppointments" => $futureAppointments,
+            "canceledAppointments" => $canceledAppointments,
             "pastAppointments" => $pastAppointments
         ]);
     }

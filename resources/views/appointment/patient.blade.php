@@ -48,7 +48,25 @@
                 </div>
             </div>
             @endforeach
-
+        </div>
+        <div class="row">
+            <h2>Rendez-vous annulé</h2>
+            @foreach ($canceledAppointments as $canceledAppointment )           
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 text-black-50 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Rendez-vous avec Dr {{$canceledAppointment->practitioner->lastname}}</h5>
+                        <p class="card-text">
+                            <span class="badge bg-secondary">{{$canceledAppointment->practitioner->specialty->name}}</span>
+                            <ul class="list-unstyled">
+                                <li>{{$canceledAppointment->meet_at}}</li>
+                                <li>{{$canceledAppointment->practitioner->address}}</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
 
     </div>
