@@ -19,7 +19,7 @@ use App\Http\Controllers\PractitionerController;
 
 /* ------ HOMEPAGE ------ */
 // Route for display hompage
-Route::get('/', [HomepageController::class,'index']);
+Route::get('/', [HomepageController::class,'index'])->name('homepage.index');
 
 /* ------ SEARCH ------ */
 // Route for handle search

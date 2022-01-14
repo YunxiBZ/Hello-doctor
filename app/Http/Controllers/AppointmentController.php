@@ -20,7 +20,6 @@ class AppointmentController extends Controller
         // get the appointments of the users login with Auth::user()
         $appointments = Auth::user()->practitioner->appointments ??
                         Auth::user()->patient->appointments;
-
         if ($appointments) {
             // differentiate appointments in the past or future
             $futureAppointments = [];
@@ -58,12 +57,27 @@ class AppointmentController extends Controller
         $practitionerSelected = Practitioner::where('id', $request->practitioner)->first();
         $time = $request->time;
         $date = Carbon::parse("$request->date $time:00 ");
-        // dd($practitionerSelected->appointments);
-        return view('appointment.confirmation', [
-            'practitioner' => $practitionerSelected,
-            'date' => $date,
-            'time' => $time
-        ]);
+
+        // validate if the appointment is available
+        $appointmentsByPractitionerSelected = $practitionerSelected->appointments;
+        $now = Carbon::now();
+        foreach ($appointmentsByPractitionerSelected as $appointment) {
+            if (Carbon::parse($date)->gt($now) && Carbon::parse($appointment->meet_at)->ne($date)) {
+                return view('appointment.confirmation', [
+                    'practitioner' => $practitionerSelected,
+                    'date' => $date,
+                    'time' => $time,
+                    'messageError' => '',
+                ]);
+            } else {
+                return view('appointment.confirmation', [
+                    'practitioner' => $practitionerSelected,
+                    'date' => $date,
+                    'time' => $time,
+                    'messageError' => 'n\'est pas disponible, Veuillez choisir un autre.',
+                ]);
+            }
+        }
     }
 
     /**
