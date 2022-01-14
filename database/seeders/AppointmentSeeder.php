@@ -24,7 +24,7 @@ class AppointmentSeeder extends Seeder
             ],
             [
                 "reason" => "Lorem ipsum dolor sit amet. Quo magni soluta et magni possimus et dolores omnis qui porro sint.",
-                "meet_at" => "2022-01-14 15:00:00",
+                "meet_at" => "2022-01-20 15:00:00",
                 "status" => "active",
                 "patient_id" => 3,
                 "practitioner_id" => 3

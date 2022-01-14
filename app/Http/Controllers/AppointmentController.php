@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Practitioner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -44,24 +45,43 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new appointment.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $practitionerSelected = Practitioner::where('id', $request->practitioner)->first();
+        $time = $request->time;
+        $date = Carbon::parse("$request->date $time:00 ");
+        // dd($practitionerSelected->appointments);
+        return view('appointment.confirmation', [
+            'practitioner' => $practitionerSelected,
+            'date' => $date,
+            'time' => $time
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created appontment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $patientId = Auth::user()->patient->id;
+        $practitionerSelected = Practitioner::where('id', $request->practitioner)->first();
+        $dateSelected = Carbon::parse("$request->date");
+        $newAppointment = new Appointment();
+        //TODO should create a textarea for get motif
+        $newAppointment->reason = "default";
+        $newAppointment->meet_at = $dateSelected;
+        $newAppointment->status = "active";
+        $newAppointment->patient_id = $patientId;
+        $newAppointment->practitioner_id = $practitionerSelected->id;
+        $newAppointment->save();
+        return redirect()->to('appointments');
     }
 
     /**
@@ -72,7 +92,7 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**

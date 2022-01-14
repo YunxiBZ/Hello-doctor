@@ -19,14 +19,27 @@
                     </div>
                     <div class="appointments d-md-flex w-100">
                         @foreach($weekdays as $weekday)
+
                         <div class="day mb-2 me-3">
-                            <time datetime={{$weekday->isoFormat('YYYY-MM-DD')}}>{{$weekday->isoFormat('dddd D/MM')}}</time>
-                            @for ($i = 9; $i <= 12 ; $i++) 
-                            <a href="" class="btn btn-primary mb-2 appointment">{{$i}}:00</a>
-                            @endfor
-                            @for ($i = 14; $i <= 18 ; $i++) 
-                            <a href="" class="btn btn-primary mb-2 appointment">{{$i}}:00</a>
-                            @endfor
+                                <time datetime={{$weekday->isoFormat('YYYY-MM-DD')}}>{{$weekday->isoFormat('dddd D/MM')}}</time>
+                                @for ($i = 9; $i <= 12 ; $i++) 
+                                    <form action="{{ route('appointments.create')}}" ">
+                                        @csrf
+                                        <input type="hidden" name="date" value="{{ $weekday->isoFormat('YYYY-MM-DD') }}">
+                                        <input type="hidden" name="time" value="{{ $i }}">
+                                        <input type="hidden" name="practitioner" value="{{ $practitioner->id }}">
+                                        <button type="submit" " class="btn btn-primary mb-2 appointment">{{$i}}:00</button>
+                                    </form>
+                                @endfor
+                                @for ($i = 14; $i <= 18 ; $i++) 
+                                    <form action="{{ route('appointments.create')}}" ">
+                                        @csrf
+                                        <input type="hidden" name="date" value="{{ $weekday->isoFormat('YYYY-MM-DD') }}">
+                                        <input type="hidden" name="time" value="{{ $i }}">
+                                        <input type="hidden" name="practitioner" value="{{ $practitioner->id }}">
+                                        <button type="submit" " class="btn btn-primary mb-2 appointment">{{$i}}:00</button>
+                                    </form>   
+                                @endfor
                         </div>
                         @endforeach
                     </div>
