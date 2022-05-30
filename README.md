@@ -21,7 +21,7 @@ Un projet pour mettre en place un site de prise de rendez-vous médicaux : Hello
 - Rester sur la branche `master` et Colonner le projet dans votre machine 
 
     ```bash
-    git clone git@github.com:O-clock-Phenix/laravel-parcours-YunxiBZ.git
+    git clone git@github.com:YunxiBZ/Hello-doctor.git
     ```
 - Accéder au projet 
 
